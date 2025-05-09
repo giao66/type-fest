@@ -1,5 +1,5 @@
 import {expectType} from 'tsd';
-import type {CamelCasedPropertiesDeep, Tagged} from '../index';
+import type {CamelCasedPropertiesDeep, Tagged} from '../index.d.ts';
 
 declare const foo: CamelCasedPropertiesDeep<{A: {B: number; C: Array<{D: string}>}}>;
 
@@ -13,10 +13,10 @@ expectType<Set<{fooBar: string}>>(bar);
 
 type bazBizDeep = {fooBAR: number; baz: {fooBAR: Array<{BARFoo: string}>}};
 
-declare const baz: CamelCasedPropertiesDeep<bazBizDeep>;
+declare const baz: CamelCasedPropertiesDeep<bazBizDeep, {preserveConsecutiveUppercase: true}>;
 expectType<{fooBAR: number; baz: {fooBAR: Array<{bARFoo: string}>}}>(baz);
 
-declare const biz: CamelCasedPropertiesDeep<bazBizDeep, {preserveConsecutiveUppercase: false}>;
+declare const biz: CamelCasedPropertiesDeep<bazBizDeep>;
 expectType<{fooBar: number; baz: {fooBar: Array<{barFoo: string}>}}>(biz);
 
 declare const tuple: CamelCasedPropertiesDeep<{tuple: [number, string, {D: string}]}>;
@@ -66,3 +66,9 @@ const result: CamelCasedPropertiesDeep<UserWithFriends> = {
 	],
 };
 expectType<CamelCasedPropertiesDeep<UserWithFriends>>(result);
+
+expectType<{fooBar: unknown}>({} as CamelCasedPropertiesDeep<{foo_bar: unknown}>);
+expectType<{fooBar: {barBaz: unknown}; biz: unknown}>({} as CamelCasedPropertiesDeep<{foo_bar: {bar_baz: unknown}; biz: unknown}>);
+
+expectType<{fooBar: any}>({} as CamelCasedPropertiesDeep<{foo_bar: any}>);
+expectType<{fooBar: {barBaz: any}; biz: any}>({} as CamelCasedPropertiesDeep<{foo_bar: {bar_baz: any}; biz: any}>);

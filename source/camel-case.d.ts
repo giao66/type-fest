@@ -1,5 +1,5 @@
-import type {ApplyDefaultOptions} from './internal';
-import type {Words} from './words';
+import type {ApplyDefaultOptions} from './internal/index.d.ts';
+import type {Words} from './words.d.ts';
 
 /**
 CamelCase options.
@@ -10,13 +10,13 @@ export type CamelCaseOptions = {
 	/**
 	Whether to preserved consecutive uppercase letter.
 
-	@default true
+	@default false
 	*/
 	preserveConsecutiveUppercase?: boolean;
 };
 
 export type DefaultCamelCaseOptions = {
-	preserveConsecutiveUppercase: true;
+	preserveConsecutiveUppercase: false;
 };
 
 /**

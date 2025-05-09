@@ -1,9 +1,9 @@
-import type {StaticPartOfArray, VariablePartOfArray, NonRecursiveType, ToString, IsNumberLike, ApplyDefaultOptions} from './internal';
-import type {EmptyObject} from './empty-object';
-import type {IsAny} from './is-any';
-import type {UnknownArray} from './unknown-array';
-import type {Subtract} from './subtract';
-import type {GreaterThan} from './greater-than';
+import type {StaticPartOfArray, VariablePartOfArray, NonRecursiveType, ToString, IsNumberLike, ApplyDefaultOptions} from './internal/index.d.ts';
+import type {EmptyObject} from './empty-object.d.ts';
+import type {IsAny} from './is-any.d.ts';
+import type {UnknownArray} from './unknown-array.d.ts';
+import type {Subtract} from './subtract.d.ts';
+import type {GreaterThan} from './greater-than.d.ts';
 
 /**
 Paths options.
@@ -12,9 +12,9 @@ Paths options.
 */
 export type PathsOptions = {
 	/**
-	The maximum depth to recurse when searching for paths.
+	The maximum depth to recurse when searching for paths. Range: 0 ~ 10.
 
-	@default 10
+	@default 5
 	*/
 	maxRecursionDepth?: number;
 
@@ -129,7 +129,7 @@ export type PathsOptions = {
 };
 
 type DefaultPathsOptions = {
-	maxRecursionDepth: 10;
+	maxRecursionDepth: 5;
 	bracketNotation: false;
 	leavesOnly: false;
 	depth: number;

@@ -1,5 +1,5 @@
 import {expectType} from 'tsd';
-import type {PascalCasedPropertiesDeep} from '../index';
+import type {PascalCasedPropertiesDeep} from '../index.d.ts';
 
 declare const foo: PascalCasedPropertiesDeep<{helloWorld: {fooBar: string}}>;
 expectType<{HelloWorld: {FooBar: string}}>(foo);
@@ -46,3 +46,17 @@ const result: PascalCasedPropertiesDeep<UserWithFriends> = {
 	],
 };
 expectType<PascalCasedPropertiesDeep<UserWithFriends>>(result);
+
+expectType<{'FooBar': unknown}>({} as PascalCasedPropertiesDeep<{foo_bar: unknown}>);
+expectType<{'FooBar': {'BarBaz': unknown}; Biz: unknown}>({} as PascalCasedPropertiesDeep<{foo_bar: {bar_baz: unknown}; biz: unknown}>);
+
+expectType<{'FooBar': any}>({} as PascalCasedPropertiesDeep<{foo_bar: any}>);
+expectType<{'FooBar': {'BarBaz': any}; Biz: any}>({} as PascalCasedPropertiesDeep<{foo_bar: {bar_baz: any}; biz: any}>);
+
+type bazBizDeep = {fooBAR: number; baz: {fooBAR: Array<{BARFoo: string}>}};
+
+declare const baz: PascalCasedPropertiesDeep<bazBizDeep, {preserveConsecutiveUppercase: true}>;
+expectType<{FooBAR: number; Baz: {FooBAR: Array<{BARFoo: string}>}}>(baz);
+
+declare const biz: PascalCasedPropertiesDeep<bazBizDeep>;
+expectType<{FooBar: number; Baz: {FooBar: Array<{BarFoo: string}>}}>(biz);
