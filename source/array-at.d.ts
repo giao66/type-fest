@@ -54,7 +54,7 @@ IsLeadingSpreadArray<T> extends true
 	// Handle trailing spread array like `[number, boolean, ...string[]]`
 	: IsTrailingSpreadArray<T> extends true
 		? [StaticPartOfArray<T>, VariablePartOfArray<T>] extends [infer StaticPart extends UnknownArray, infer VariablePart extends UnknownArray]
-		// Handle positive index
+			// Handle positive index
 			? IsNegative<N> extends false
 				? GreaterThanOrEqual<N, StaticPart['length']> extends true
 					? VariablePart[number] | undefined
