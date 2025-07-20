@@ -1,5 +1,8 @@
 import type {If} from '../if.d.ts';
+<<<<<<< HEAD
 import type {IsEqual} from '../is-equal.d.ts';
+=======
+>>>>>>> main
 import type {IsNever} from '../is-never.d.ts';
 import type {OptionalKeysOf} from '../optional-keys-of.d.ts';
 import type {UnknownArray} from '../unknown-array.d.ts';
@@ -297,4 +300,8 @@ type _CollapseRestElement<
 					BackwardAccumulator
 				>
 				: never // Should never happen, since `[(infer First)?, ...infer Rest]` is a top-type for arrays.
+<<<<<<< HEAD
 		: never; // Should never happen
+=======
+		: never; // Should never happen
+>>>>>>> main
