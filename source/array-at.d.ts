@@ -38,13 +38,13 @@ IsNegative<N> extends false
 			? IsNegative<Index> extends true
 				? undefined
 				:
-				| RequiredPart[Index]
-				| [RequiredPart, Index]
-				| (
-					LessThanOrEqual<NumberAbsolute<N>, Required<OptionalPart>['length']> extends true
-						? ExactOptionalPropertyTypesEnable extends true ? Required<OptionalPart>[number] : OptionalPart[number]
-						: never
-				)
+					| RequiredPart[Index]
+					| [RequiredPart, Index]
+					| (
+						LessThanOrEqual<NumberAbsolute<N>, Required<OptionalPart>['length']> extends true
+							? ExactOptionalPropertyTypesEnable extends true ? Required<OptionalPart>[number] : OptionalPart[number]
+							: never
+					)
 			: never // Never happens
 		: never; // Never happens
 
